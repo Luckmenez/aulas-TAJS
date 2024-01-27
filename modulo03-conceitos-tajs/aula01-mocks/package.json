@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand test/",
-    "test:dev": "NODE_OPTIONS=--experimental-vm-modules npx jest --runInBand --watchAll test/",
-    "test:debug": "node --experimental-vm-modules --inspect-brk node_modules/jest/bin/jest --runInBand --watchAll tests"
+    "test": "NODE_OPTIONS=--experimental-vm-modules npx jest --injectGlobals false --runInBand test/",
+    "test:dev": "NODE_OPTIONS=--experimental-vm-modules npx jest --injectGlobals false --runInBand --watchAll test/",
+    "test:debug": "node --experimental-vm-modules --inspect-brk node_modules/jest/bin/jest --injectGlobals false --runInBand --watchAll tests"
   },
   "keywords": [],
   "author": "lucasmenezes",
