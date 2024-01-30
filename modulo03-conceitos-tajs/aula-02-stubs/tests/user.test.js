@@ -1,6 +1,7 @@
 import { describe, it, expect, beforeEach, jest } from "@jest/globals";
 import Service from "../src/service.js";
 import fs from "node:fs/promises";
+import fsSync from "node:fs";
 
 describe("#Service Test Suite", () => {
   let _service;
@@ -46,6 +47,14 @@ describe("#Service Test Suite", () => {
       const expected = dbData.map(({ password, ...rest }) => rest);
 
       expect(result).toEqual(expected);
+    });
+
+    it("#Should return an empty array if the file does not exists", async () => {
+      jest.spyOn(fsSync, fsSync.existsSync.name).mockResolvedValue(false);
+
+      const result = await _service.read();
+
+      expect(result).toEqual([]);
     });
   });
 });
