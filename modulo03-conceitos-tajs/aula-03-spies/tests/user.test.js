@@ -2,7 +2,6 @@ import { describe, it, expect, beforeEach, jest } from "@jest/globals";
 import Service from "../src/service.js";
 import fs from "node:fs/promises";
 import crypto from "node:crypto";
-import { assert } from "node:console";
 
 describe("#Service Test Suite", () => {
   let _service;

@@ -12,6 +12,33 @@ describe("#Task Test Suite", () => {
     _task = new Task();
   });
 
+  it.skip("#Should be able to only run tasks where due without fake timers (slow)", async () => {
+    // Arrange
+    const tasks = [
+      {
+        name: "task1",
+        dueAt: new Date(Date.now() + 5000), //5s
+        fn: jest.fn(),
+      },
+      {
+        name: "task2",
+        dueAt: new Date(Date.now() + 10000), //10s
+        fn: jest.fn(),
+      },
+    ];
+
+    // Act
+    _task.save(tasks[0]);
+    _task.save(tasks[1]);
+
+    _task.run(200);
+
+    await setTimeout(11e3); //11s
+
+    expect(tasks[0].fn).toHaveBeenCalled();
+    expect(tasks[1].fn).toHaveBeenCalled();
+  }, 15e3); // Configuração para o jest esperar 15s para rodar
+
   it("#Should be able to only run tasks where due with fake timers (fast)", async () => {
     jest.useFakeTimers();
     // Arrange
