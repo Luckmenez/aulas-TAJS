@@ -1,0 +1,24 @@
+{
+  "name": "aula01-tdd",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cucumber-js",
+    "test:dev": "node --watch node_modules/.bin/cucumber-js --fail-fast --format progress --format html:cucumber-report.html",
+    "test:debug": "node --watch --inspect-brk node_modules/@cucumber/cucumber/bin/cucumber.js --format progress --format html:cucumber-report.html"
+  },
+  "keywords": [],
+  "author": "Lucas Silva",
+  "license": "ISC",
+  "type": "module",
+  "engines": {
+    "node": "v20.10.0"
+  },
+  "devDependencies": {
+    "@cucumber/cucumber": "^10.0.1"
+  },
+  "dependencies": {
+    "sinon": "^17.0.1"
+  }
+}
