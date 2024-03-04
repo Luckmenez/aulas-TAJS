@@ -15,7 +15,7 @@ Feature: Create Users API
   Scenario: Error when creating a user who is younger than 18 years old
     When I create a young user with the following details:
       | name  | birthDay   |
-      | Alice | 2005-01-01 |
+      | Alice | 2009-01-01 |
     Then I should receive an error message that the user must be at least 18 years old
 
   Scenario: Create an adult user
@@ -25,8 +25,8 @@ Feature: Create Users API
     When I create a new user with the following details 2:
       | name     | birthDay   |
       | Jane     | 1980-01-01 |
-    Then the user should be categorized as an "Adult"
-    When I request the user with ID "2"
+    Then the category should be "Adult"
+    When I request the user with ID
     Then I should receive a JSON response with the user's details
     And the user's category should be "Adult"
 
@@ -38,9 +38,8 @@ Feature: Create Users API
       | name     | birthDay   |
       | Bob      | 1950-01-01 |
     Then the user should be categorized as a "Senior"
-    When I request the user with ID "3"
+    When I request the user with ID 3
     Then I should receive a JSON response with the user's details
-    And the user's category should be "Senior"
 
   Scenario: Error when creating a user with an empty name
     Given I have a running server

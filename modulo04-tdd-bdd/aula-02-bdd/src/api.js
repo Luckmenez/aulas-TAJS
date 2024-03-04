@@ -8,8 +8,8 @@ function getUserCategory(birthDay) {
   const age = new Date().getFullYear() - new Date(birthDay).getFullYear();
   if (age < 18) throw new Error("User must be 18 years or older");
   if (age >= 18 && age <= 25) return "young-adult";
-  if (age >= 25 && age <= 50) return "adult";
-  if (age >= 50) return "elderly";
+  if (age >= 25 && age <= 50) return "Adult";
+  if (age >= 50) return "Senior";
 
   return "";
 }
@@ -18,6 +18,10 @@ const server = createServer(async (request, response) => {
   try {
     if (request.url === "/users" && request.method === "POST") {
       const user = JSON.parse(await once(request, "data"));
+
+      if (!user.name || !user.birthDay) {
+        throw new Error("Name and birthDay are required");
+      }
 
       const updatedUser = {
         ...user,
